@@ -36,7 +36,9 @@ public final class PersonWarehouse implements Iterable<Person> {
      * @return list of names of Person objects
      */ // TODO
     public List<String> getNames() {
-        return null;
+        List<String> names = new ArrayList<>();
+        people.forEach(n -> names.add(n.getName()));
+        return names;
     }
 
 
