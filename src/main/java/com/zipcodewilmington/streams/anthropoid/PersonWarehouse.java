@@ -69,14 +69,14 @@ public final class PersonWarehouse implements Iterable<Person> {
      * @return a Stream of respective
      */ //TODO
     public Stream<Person> getFirstNUniquelyNamedPeople(int n) {
-        return null;
+        return people.stream().filter(distinctByKey(p -> p.getName())).limit(n);
     }
 
     /**
      * @return a mapping of Person Id to the respective Person name
      */ // TODO
     public Map<Long, String> getIdToNameMap() {
-        return null;
+        return people.stream().collect(Collectors.toMap(p -> p.getPersonalId(), p -> p.getName()));
     }
 
 
@@ -84,7 +84,8 @@ public final class PersonWarehouse implements Iterable<Person> {
      * @return Stream of Stream of Aliases
      */ // TODO
     public Stream<Stream<String>> getNestedAliases() {
-        return null;
+        Stream<Stream<String>> nestedAliases = people.stream().map(p -> Arrays.stream(p.getAliases()));
+        return nestedAliases;
     }
 
 
@@ -92,7 +93,7 @@ public final class PersonWarehouse implements Iterable<Person> {
      * @return Stream of all Aliases
      */ // TODO
     public Stream<String> getAllAliases() {
-        return null;
+        return people.stream().map(p -> Arrays.stream(p.getAliases()).toString());
     }
 
     // DO NOT MODIFY
